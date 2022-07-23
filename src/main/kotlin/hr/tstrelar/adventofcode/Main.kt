@@ -14,14 +14,15 @@ fun main(args: Array<String>) {
 
 
 private fun dayOne(filename: String) {
-    val data = readFileAsList(filename)
-    data.forEach {
-        println(it)
+    val data = readFileAsListOfInts(filename)
+    val result = data.fold((0 to 0)) { acc: Pair<Int, Int>, n: Int ->
+        if (n > acc.first) (n to acc.second + 1) else (n to acc.second)
     }
+    println(result.second - 1)
 }
 
 
-private fun readFileAsList(filename: String): List<Int> {
+private fun readFileAsListOfInts(filename: String): List<Int> {
     val file = File(filename)
     if (!file.exists()) { throw UsageException("There is no file in the path you provided") }
     val lines = ArrayList<Int>()
