@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4fb69737-6e8b-4b71-88fb-018dc01b7ec9" name="Changes" comment="Init">
+    <list default="true" id="4fb69737-6e8b-4b71-88fb-018dc01b7ec9" name="Changes" comment="Solve day 1">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/hr/tstrelar/adventofcode/Direction.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/hr/tstrelar/adventofcode/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/hr/tstrelar/adventofcode/Main.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/hr/tstrelar/adventofcode/UsageException.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/hr/tstrelar/adventofcode/UsageException.kt" afterDir="false" />
@@ -66,6 +67,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Kotlin Class" />
+        <option value="Kotlin Enum" />
       </list>
     </option>
   </component>
@@ -250,7 +252,7 @@
       <option name="presentableId" value="Default" />
       <updated>1658586357315</updated>
       <workItem from="1658586358652" duration="900000" />
-      <workItem from="1658587277073" duration="4709000" />
+      <workItem from="1658587277073" duration="7593000" />
     </task>
     <task id="LOCAL-00001" summary="Init">
       <created>1658589369490</created>
@@ -259,7 +261,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658589369490</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Solve day 1">
+      <created>1658592003112</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1658592003112</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -278,14 +287,15 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Init" />
-    <option name="LAST_COMMIT_MESSAGE" value="Init" />
+    <MESSAGE value="Solve day 1" />
+    <option name="LAST_COMMIT_MESSAGE" value="Solve day 1" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/src/main/kotlin/hr/tstrelar/adventofcode/Main.kt</url>
-          <line>18</line>
+          <line>22</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
