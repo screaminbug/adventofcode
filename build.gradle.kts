@@ -26,7 +26,7 @@ tasks.withType<KotlinCompile> {
 }
 
 application {
-    mainClass.set("hr.tstrelar.adventofcode.Main")
+    mainClass.set("MainKt")
 }
 val compileKotlin: KotlinCompile by tasks
 compileKotlin.kotlinOptions {

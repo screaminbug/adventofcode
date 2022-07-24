@@ -5,10 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4fb69737-6e8b-4b71-88fb-018dc01b7ec9" name="Changes" comment="Solve day 1">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/hr/tstrelar/adventofcode/Direction.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/day_one.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/day_two.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/day_two_example.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/hr/tstrelar/adventofcode/Submarine.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/hr/tstrelar/adventofcode/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/hr/tstrelar/adventofcode/Main.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/hr/tstrelar/adventofcode/UsageException.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/hr/tstrelar/adventofcode/UsageException.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,6 +72,7 @@
       <list>
         <option value="Kotlin Class" />
         <option value="Kotlin Enum" />
+        <option value="Kotlin Data Class" />
       </list>
     </option>
   </component>
@@ -88,6 +93,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "dart.analysis.tool.window.visible": "false",
     "last_opened_file_path": "C:/Projects/adventofcode",
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Modules",
@@ -96,7 +102,7 @@
     "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle"
   }
 }]]></component>
-  <component name="RunManager" selected="Gradle.adventofcode [jar]">
+  <component name="RunManager" selected="Kotlin.MainKt">
     <configuration default="true" type="Babashka" factoryName="BabashkaLocalRepl" activateToolWindowBeforeRun="false">
       <setting name="displayName" value="" />
       <setting name="bbPath" value="" />
@@ -131,27 +137,6 @@
       <setting name="customPortFile" value="" />
       <setting name="fixLineNumbers" value="false" />
       <setting name="focusEditor" value="false" />
-      <method v="2" />
-    </configuration>
-    <configuration name="adventofcode [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="build" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
     <configuration name="adventofcode [installDist]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -217,17 +202,38 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
+    <configuration name="adventofcode [testClasses]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="testClasses" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <configuration name="MainKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="MainKt" />
       <module name="adventofcode.main" />
-      <option name="PROGRAM_PARAMETERS" value="1 /Users/Tomislav/day1 " />
+      <option name="PROGRAM_PARAMETERS" value="2 data/day_two.txt" />
       <shortenClasspath name="NONE" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="Gradle.adventofcode [build]" />
+      <item itemvalue="Gradle.adventofcode [testClasses]" />
       <item itemvalue="Gradle.adventofcode [installDist]" />
       <item itemvalue="Gradle.adventofcode [jar]" />
       <item itemvalue="Gradle.adventofcode [run]" />
@@ -235,11 +241,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.adventofcode [jar]" />
         <item itemvalue="Kotlin.MainKt" />
+        <item itemvalue="Gradle.adventofcode [jar]" />
+        <item itemvalue="Gradle.adventofcode [testClasses]" />
         <item itemvalue="Gradle.adventofcode [run]" />
         <item itemvalue="Gradle.adventofcode [installDist]" />
-        <item itemvalue="Gradle.adventofcode [build]" />
       </list>
     </recent_temporary>
   </component>
@@ -253,6 +259,7 @@
       <updated>1658586357315</updated>
       <workItem from="1658586358652" duration="900000" />
       <workItem from="1658587277073" duration="7593000" />
+      <workItem from="1658637778575" duration="9011000" />
     </task>
     <task id="LOCAL-00001" summary="Init">
       <created>1658589369490</created>
@@ -295,8 +302,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/src/main/kotlin/hr/tstrelar/adventofcode/Main.kt</url>
-          <line>22</line>
-          <option name="timeStamp" value="1" />
+          <line>54</line>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

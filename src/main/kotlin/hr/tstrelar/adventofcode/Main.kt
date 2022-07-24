@@ -1,4 +1,5 @@
 import hr.tstrelar.adventofcode.Direction
+import hr.tstrelar.adventofcode.Submarine
 import hr.tstrelar.adventofcode.UsageException
 import java.io.File
 import java.util.*
@@ -19,24 +20,56 @@ fun main(args: Array<String>) {
 
 private fun dayOne(filename: String) {
     val data = readFileAsListOfInts(filename)
-    val result = data.fold((0 to 0)) { acc: Pair<Int, Int>, n: Int ->
+    println("Part one: ${dayOnePartOne(data)}")
+    println("Part two: ${dayOnePartTwo(data)}")
+}
+
+private fun dayOnePartOne(data: List<Int>) =
+    data.fold((0 to 0)) {
+        acc: Pair<Int, Int>, n: Int ->
         if (n > acc.first) (n to acc.second + 1) else (n to acc.second)
     }.second - 1
-    println(result)
-}
+
+
+private fun dayOnePartTwo(data: List<Int>) =
+    dayOnePartOne(data.windowed(3,1).map { it.sum() })
+
 
 private fun dayTwo(filename: String) {
     val data = readFileAsListOfPairsOfDirectionToInts(filename)
-    val values = data.fold(0 to 0) { acc: Pair<Int, Int>, n: Pair<Direction, Int> ->
-        when(n.first) {
-            Direction.FORWARD -> n.second + acc.first to acc.second
-            Direction.DOWN -> acc.first to acc.second + n.second
-            Direction.UP -> acc.first to acc.second - n.second
-        }
-    }
-    println(values.first * values.second)
+    println("Part one: ${dayTwoPartOne(data)}")
+    println("Part two: ${dayTwoPartTwo(data)}")
 }
 
+fun dayTwoPartOne(data: List<Pair<Direction, Int>>): Int =
+    data.fold(Submarine()) { acc, current ->
+        when(current.first) {
+            Direction.FORWARD -> Submarine(position = acc.position + current.second, depth = acc.depth)
+            Direction.DOWN -> Submarine(position = acc.position, depth = acc.depth + current.second)
+            Direction.UP -> Submarine(position = acc.position, depth = acc.depth - current.second)
+        }
+    }.getResult()
+
+fun dayTwoPartTwo(data: List<Pair<Direction, Int>>): Int =
+    data.fold(Submarine()) { acc, current ->
+        when(current.first) {
+            Direction.FORWARD -> Submarine(
+                position = acc.position + current.second,
+                depth = acc.depth + (acc.aim * current.second),
+                aim = acc.aim
+            )
+            Direction.DOWN -> Submarine(
+                position = acc.position,
+                depth = acc.depth,
+                aim = acc.aim + current.second
+            )
+            Direction.UP -> Submarine(
+                position = acc.position,
+                depth = acc.depth,
+                aim = acc.aim - current.second
+            )
+        }
+    }.getResult()
 
 private fun readFileAsListOfInts(filename: String): List<Int> {
     val file = getExistingFile(filename)
