@@ -5,7 +5,6 @@ import hr.tstrelar.adventofcode.Submarine
 import hr.tstrelar.adventofcode.UsageException
 import java.io.File
 import java.util.*
-import kotlin.collections.ArrayList
 
 fun main(args: Array<String>) {
     if (args.size != 2) {
@@ -15,6 +14,7 @@ fun main(args: Array<String>) {
     when(day) {
         1 -> dayOne(args[1])
         2 -> dayTwo(args[1])
+        3 -> dayThree(args[1])
         else -> throw UsageException("Day $day is not implemented yet")
     }
 }
@@ -73,6 +73,42 @@ fun dayTwoPartTwo(data: List<Navigation>): Int =
         }
     }.getResult()
 
+private fun dayThree(filename: String) {
+    val data = readFileFromBinaryStringAsListOfIntsAndWidth(filename)
+    println("Part one: ${dayThreePartOne(data)}")
+//    println("Part two: ${dayThreePartTwo(data)}")
+}
+
+private fun dayThreePartOne(data: Pair<List<Int>, Int>): Int {
+    val width = data.second
+    val size = data.first.size
+    val onesCount = data.first.fold(List(width) { 0 }) { acc: List<Int>, current ->
+        IntRange(0, width - 1).map {
+            acc[it] + getOneAt(current, it)
+        }
+    }
+    return getGammaRate(onesCount, size) * getEpsilonRate(onesCount, size)
+}
+
+private fun getGammaRate(occurence: List<Int>, size: Int) = getRate(occurence, size) {
+        count, threshold -> count > threshold
+}
+
+private fun getEpsilonRate(occurence: List<Int>, size: Int) = getRate(occurence, size) {
+        count, threshold -> count < threshold
+}
+
+private fun getRate(occurence: List<Int>, size: Int, condition: (count: Int, threshold: Int) -> Boolean): Int {
+    val threshold = size / 2
+    return occurence.foldIndexed(0) { idx, acc, n ->
+        if (condition(n, threshold)) acc or (1 shl idx) else acc
+    }
+}
+
+private fun getOneAt(number: Int, pos: Int): Int {
+    return (number shr pos) and 1
+}
+
 private fun readFileAsListOfInts(filename: String): List<Int> {
     val file = getExistingFile(filename)
     val lines = ArrayList<Int>()
@@ -99,6 +135,18 @@ private fun readFileAsListOfNavigationCommands(filename: String): List<Navigatio
     return lines
 }
 
+private fun readFileFromBinaryStringAsListOfIntsAndWidth(filename: String): Pair<List<Int>, Int> {
+    val file = getExistingFile(filename)
+    val lines = kotlin.collections.ArrayList<Int>()
+    var width = 500 // an arbitrary large number we won't ever get
+    file.forEachLine {
+        lines.add(it.toIntOrNull(2) ?: throw UsageException(
+            "File should contain only binary numbers represented as strings of 1 and 0 in each line"
+        ))
+        width = if (it.length < width) it.length else width // take the smallest line width
+    }
+    return lines to width
+}
 private fun getExistingFile(filename: String): File {
     val file = File(filename)
     if (!file.exists()) { throw UsageException("There is no file in the path you provided") }
