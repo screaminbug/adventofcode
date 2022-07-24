@@ -1,4 +1,6 @@
 import hr.tstrelar.adventofcode.Direction
+import hr.tstrelar.adventofcode.Direction.*
+import hr.tstrelar.adventofcode.Navigation
 import hr.tstrelar.adventofcode.Submarine
 import hr.tstrelar.adventofcode.UsageException
 import java.io.File
@@ -36,37 +38,37 @@ private fun dayOnePartTwo(data: List<Int>) =
 
 
 private fun dayTwo(filename: String) {
-    val data = readFileAsListOfPairsOfDirectionToInts(filename)
+    val data = readFileAsListOfNavigationCommands(filename)
     println("Part one: ${dayTwoPartOne(data)}")
     println("Part two: ${dayTwoPartTwo(data)}")
 }
 
-fun dayTwoPartOne(data: List<Pair<Direction, Int>>): Int =
-    data.fold(Submarine()) { acc, current ->
-        when(current.first) {
-            Direction.FORWARD -> Submarine(position = acc.position + current.second, depth = acc.depth)
-            Direction.DOWN -> Submarine(position = acc.position, depth = acc.depth + current.second)
-            Direction.UP -> Submarine(position = acc.position, depth = acc.depth - current.second)
+fun dayTwoPartOne(data: List<Navigation>): Int =
+    data.fold(Submarine()) { submarine, current ->
+        when(current.direction) {
+            FORWARD -> Submarine(position = submarine.position + current.amount, depth = submarine.depth)
+            DOWN -> Submarine(position = submarine.position, depth = submarine.depth + current.amount)
+            UP -> Submarine(position = submarine.position, depth = submarine.depth - current.amount)
         }
     }.getResult()
 
-fun dayTwoPartTwo(data: List<Pair<Direction, Int>>): Int =
-    data.fold(Submarine()) { acc, current ->
-        when(current.first) {
-            Direction.FORWARD -> Submarine(
-                position = acc.position + current.second,
-                depth = acc.depth + (acc.aim * current.second),
-                aim = acc.aim
+fun dayTwoPartTwo(data: List<Navigation>): Int =
+    data.fold(Submarine()) { submarine, current ->
+        when(current.direction) {
+            FORWARD -> Submarine(
+                position = submarine.position + current.amount,
+                depth = submarine.depth + (submarine.aim * current.amount),
+                aim = submarine.aim
             )
-            Direction.DOWN -> Submarine(
-                position = acc.position,
-                depth = acc.depth,
-                aim = acc.aim + current.second
+            DOWN -> Submarine(
+                position = submarine.position,
+                depth = submarine.depth,
+                aim = submarine.aim + current.amount
             )
-            Direction.UP -> Submarine(
-                position = acc.position,
-                depth = acc.depth,
-                aim = acc.aim - current.second
+            UP -> Submarine(
+                position = submarine.position,
+                depth = submarine.depth,
+                aim = submarine.aim - current.amount
             )
         }
     }.getResult()
@@ -80,20 +82,19 @@ private fun readFileAsListOfInts(filename: String): List<Int> {
     return lines
 }
 
-private fun readFileAsListOfPairsOfDirectionToInts(filename: String): List<Pair<Direction, Int>> {
+private fun readFileAsListOfNavigationCommands(filename: String): List<Navigation> {
     val file = getExistingFile(filename)
-    val lines = ArrayList<Pair<Direction, Int>>()
+    val lines = ArrayList<Navigation>()
     file.forEachLine {
         val pairStr = it.split(" ").zipWithNext()[0]
-        val pairStrInt = (
-                Direction.valueOf(pairStr.first.uppercase(Locale.getDefault()))
-                        to (pairStr.second.toIntOrNull()
-                    ?: throw UsageException(
+        val navigation = Navigation(
+            direction = Direction.valueOf(pairStr.first.uppercase(Locale.getDefault())),
+            amount = pairStr.second.toIntOrNull() ?: throw UsageException(
                         "File should be structured in such a way that each line contains a " +
                                 "string and an integer, separated by space")
                         )
-                )
-        lines.add(pairStrInt)
+
+        lines.add(navigation)
     }
     return lines
 }
